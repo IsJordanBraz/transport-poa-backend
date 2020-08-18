@@ -26,6 +26,8 @@ Desenvolvido utilizando:
 
 ### 📀 Instalação
 
+É necessario ter MongoDB instalado na maquina.
+
 Clone este repositório:
 
 ```bash
