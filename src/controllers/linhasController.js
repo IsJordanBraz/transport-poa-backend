@@ -1,11 +1,9 @@
 const express = require('express');
 
-//Schema das Linhas
 const Linhas = require('../models/Linhas');
 
 const router = express.Router();
 
-//Rota que retorna todas Linhas do database
 router.get('/', async (req, res) => {
     try{
         const linhas = await Linhas.find();
@@ -15,7 +13,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-//Rota para inserir Linha no database
 router.post('/', async (req, res) => {
     const { code } = req.body;    
     try{
@@ -29,7 +26,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-//Rota para atualizar  Linha no database
 router.put('/:linhaId', async (req, res) => {
     const { name, code } = req.body;   
     try{
@@ -44,7 +40,6 @@ router.put('/:linhaId', async (req, res) => {
     }
 });
 
-//Rota para deletar Linha no database
 router.delete('/:linhaId', async (req, res) => {    
     try{
         await Linhas.findByIdAndRemove(req.params.linhaId);

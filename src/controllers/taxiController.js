@@ -3,7 +3,6 @@ const fs = require('fs');
 const os = require('os');
 const router = express.Router();
 
-//Rota que retorna todas Linhas do database
 router.get('/', async (req, res) => {
     try{
         fs.readFile('dataTaxi.txt','utf8', (err, data) => {
@@ -12,12 +11,11 @@ router.get('/', async (req, res) => {
         });          
         
     } catch(err){
-        return res.status(400).send({ erro: 'Falha ao carregar Linhas'});
+        return res.status(400).send({ erro: 'Falha ao carregar log de taxi'});
     }
     
 });
 
-//Rota para inserir Linha no database
 router.post('/', async (req, res) => {
     const { nome } = req.body;
     const { lat } = req.body;
@@ -29,11 +27,10 @@ router.post('/', async (req, res) => {
         let sendToFile = nome+"#"+lat+"#"+lng+"#"+date;
         fs.appendFile('dataTaxi.txt', sendToFile + os.EOL, function (err) {
             if (err) throw err;
-            console.log('Saved!');
           })       
         return res.status(200).send({ ok: 'tudocerto'});
     } catch(err){
-        return res.status(400).send({ erro: 'Falha ao carregar Linhas'});
+        return res.status(400).send({ erro: 'Falha ao criar log de taxi'});
     }
 });
 

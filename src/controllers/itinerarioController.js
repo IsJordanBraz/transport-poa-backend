@@ -1,16 +1,13 @@
 const express = require('express');
 
-//Schema do itinerario
 const Itinerarios = require('../models/Itinerarios');
 
 const router = express.Router();
 
-//Rota raiz, retorna erro.
 router.get('/', async (req, res) => {
     return res.status(400).send({ erro: 'ID não encontrado'});
 });
 
-//Rota que retorna todos itinerarios da Linha
 router.get('/:linhaID', async (req, res) => {    
     try{
         const itinerarios = await Itinerarios.find({
@@ -22,7 +19,6 @@ router.get('/:linhaID', async (req, res) => {
     }
 });
 
-//Rota para inserir Linha no database
 router.post('/', async (req, res) => {
     const { lat } = req.body; 
     const { lng } = req.body;
@@ -41,12 +37,10 @@ router.post('/', async (req, res) => {
         const itinerarios = await Itinerarios.create(req.body);
         return res.send({ itinerarios });
     } catch(err){
-        console.log(err);
         return res.status(400).send({ erro: 'Registro falhou'});
     }
 });
 
-//Rota para deletar Linha no database
 router.delete('/:linhaId', async (req, res) => {    
     try{
         await Itinerarios.findByIdAndRemove(req.params.linhaId);
