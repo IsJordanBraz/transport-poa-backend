@@ -20,7 +20,7 @@ Desenvolvido utilizando:
 
 * [Node](https://nodejs.org/en/)
 * [Express](https://expressjs.com/pt-br/)
-* [MongoDB](https://www.mongodb.com/)
+* [SQlite](https://www.sqlite.org/index.html)
 * [Swagger](https://swagger.io/)
 
 
